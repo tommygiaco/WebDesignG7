@@ -1,67 +1,125 @@
 <script lang="ts">
-	let lightTheme = typeof window === 'undefined' || window.matchMedia('(prefers-color-scheme: light)').matches;
-	function switchTheme() 
-	{
+	let lightTheme =
+		typeof window === 'undefined' || window.matchMedia('(prefers-color-scheme: light)').matches;
+	function switchTheme() {
 		lightTheme = !lightTheme;
 		let themeLink = document.head.querySelector<HTMLLinkElement>('#theme');
-		if (!themeLink) 
-		{
+		if (!themeLink) {
 			themeLink = document.createElement('link');
 			themeLink.rel = 'stylesheet';
 			themeLink.id = 'theme';
 		}
 		themeLink.href = `/smui${lightTheme ? '' : '-dark'}.css`;
-		document.head .querySelector<HTMLLinkElement>('link[href$="/smui-dark.css"]') ?.insertAdjacentElement('afterend', themeLink);
+		document.head
+			.querySelector<HTMLLinkElement>('link[href$="/smui-dark.css"]')
+			?.insertAdjacentElement('afterend', themeLink);
 	}
 </script>
 
-<header class="mdc-top-app-bar">
-	<div class="mdc-top-app-bar__row">
-		<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-			<button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" aria-label="Close">menu</button>
-			<a href="/home.svelte" class="mdc-top-app-bar__title">Beigua 2024</a>
-		</section>
-		<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-			<a href="/home.svelte" class="mdc-top-app-bar__title">Articoli</a>
-			<a href="/home.svelte" class="mdc-top-app-bar__title">Progetto</a>
-			<a href="/home.svelte" class="mdc-top-app-bar__title">Chi Siamo</a>
-			<button on:click={switchTheme} class="material-icons mdc-top-app-bar__action-item mdc-icon-button" aria-label="Brightness6Icon">brightness_6</button>
-		</section>
+<header>
+	<div class="mdc-top-app-bar mdc-top-app-bar__row">
+		<div class="mdc-top-app-bar__row">
+			<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+				<button
+					class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button"
+					aria-label="Close"
+				>
+					home
+				</button>
+				<a href="/home.svelte" class="mdc-top-app-bar__title">Homepage</a>
+			</section>
+			<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+				<a href="/home.svelte" class="mdc-top-app-bar__title">Articoli</a>
+				<a href="/home.svelte" class="mdc-top-app-bar__title">Progetto</a>
+				<a href="/home.svelte" class="mdc-top-app-bar__title">Chi Siamo</a>
+				<button
+					on:click={switchTheme}
+					class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button"
+					aria-label="Brightness6Icon"
+				>
+					brightness_6
+				</button>
+			</section>
+		</div>
 	</div>
 </header>
 
-<div style="margin: 80px;"><p>cacaaaaa</p></div>
+<section class="my-card-cards ">
+	<div>
+		<div class="my-card-section">
+			<div class="mdc-card my-card-side my-card-wrapper">
+				<div
+					class="mdc-card__media mdc-card__media--16-9"
+					style="background-image: url('src/routes/articolo1.jpeg')"
+				/>
+			</div>
 
-<div class="mdc-card my-card">
-	<div class="mdc-card__primary-action">
-	  <div class="mdc-card__media mdc-card__media--square my-card__media">
-		<div class="mdc-card__media-content">Title</div>
-	  </div>
-	  <!-- ... additional primary action content ... -->
-	  <div class="mdc-card__ripple"></div>
+			<div class="mdc-card my-card-center my-card-wrapper">
+				<div
+					class="mdc-card__media mdc-card__media--16-9"
+					style="background-image: url('src/routes/articolo2.jpeg')"
+				/>
+				<div class="my-card-wrapper">
+					<div class="mdc-typography--headline6">Volpiiiiiiii</div>
+					<div class="mdc-typography--body2">Drindindindindindindin</div>
+				</div>
+			</div>
+
+			<div class="mdc-card my-card-side my-card-wrapper">
+				<div
+					class="mdc-card__media mdc-card__media--16-9"
+					style="background-image: url('src/routes/articolo3.jpeg')"
+				/>
+			</div>
+		</div>
 	</div>
-	<div class="mdc-card__actions">
-	  <div class="mdc-card__action-buttons">
-		<button class="mdc-button mdc-card__action mdc-card__action--button">
-		  <div class="mdc-button__ripple"></div>
-		  <span class="mdc-button__label">Monte Tarineperepepepepepe</span>
-		</button>
-	  </div>
+</section>
+
+<footer class="footer">
+	<div class="mdc-top-app-bar mdc-top-app-bar--prominent ">
+		<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start mdc-card__action-buttons">
+			<img src="src/routes/Beigua2024.png" alt="beigua logo" style="width:86px;" />
+		</section>
 	</div>
-  </div>
+	<div class="mdc-top-app-bar--prominent-fixed-adjust ">
+	</div>
+</footer>
 
 <style>
-.my-card
-{
-  height: 350px;
-  width: 350px;
-}
-.my-card__media 
-{
-  background-image: url("src/routes/Tarine.jpg");
-}
+	.my-card-cards {
+		padding-top: 64px;
+	}
+	.my-card-center {
+		width: 600px;
+	}
+	.my-card-side {
+		width: 300px;
+		opacity: 0.7;
+	}
+	.my-card-wrapper {
+		margin: 16px;
+	}
+	.my-card-section {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	.mdc-top-app-bar,
+	.mdc-top-app-bar__title,
+	.mdc-top-app-bar__navigation-icon {
+		background-color: var(--mdc-theme-surface) !important;
+		color: var(--mdc-theme-on-primary) !important;
+	}
+	.mdc-typography--body2 {
+		opacity: 0.6;
+	}
+	.footer {
+		overflow: hidden;
+		position: fixed;
+		width: 100%;
+		bottom: 0;
+		background-color: #418354 !important;
+		color: white !important;
+	}
 </style>
-
-
-
-
